@@ -46,7 +46,7 @@ jobs:
         uses: docker/setup-buildx-action@v4.0.0
 
       - name: Build Docker Image
-        run: docker build -f Dockerfile -t pygoatapp:latest .
+        run: docker build -f Dockerfile -t myapp:latest .
 
       - name: Dockerscout Scan
         run: |
