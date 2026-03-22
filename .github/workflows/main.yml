@@ -31,16 +31,19 @@ jobs:
   
   image_scan:
     name: Build and Run Image Scan
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Setup Docker
-        uses: docker-practice/actions-setup-docker@v1
-        with:
-          docker_version: 'latest'
+      - name: Docker Version Verify
+        run: |
+          docker version
+          docker info
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v4.0.0
 
       - name: Build Docker Image
         run: docker build -f Dockerfile -t pygoatapp:latest .
